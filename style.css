@@ -36,10 +36,14 @@ header {
 }
 
 .logo {
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.6rem;
+    /* Matches hamburger menu height */
+    font-weight: 800;
+    /* Double the previous 500 */
     letter-spacing: 0.1em;
     cursor: pointer;
+    line-height: 1;
+    /* Ensure height is strictly defined by font-size */
 }
 
 nav ul {
