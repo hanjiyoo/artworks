@@ -256,7 +256,7 @@ function initCV() {
 function initContact() {
     document.getElementById('contact-email-btn').onclick = (e) => {
         e.preventDefault();
-        location.href = `mailto:${SITE_CONFIG.email}?subject=${encodeURIComponent('[Portfolio Inquiry]')}`;
+        location.href = `mailto:${SITE_CONFIG.email}?subject=${encodeURIComponent('[Artist Inquiry]')}`;
     };
 }
 
@@ -301,3 +301,4 @@ function initModal() {
     const modal = document.getElementById('work-modal');
     window.onclick = (e) => { if (e.target === modal) closeModal(); };
 }
+
