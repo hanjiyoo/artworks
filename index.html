@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo" id="site-logo">ARTIST NAME</div>
+        <div class="hamburger" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#works">Works</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="content-area">
+        <!-- Home Section -->
+        <section id="home" class="active">
+            <div class="home-feed-container" id="home-feed">
+                <!-- Randomly shuffled works will be loaded here -->
+            </div>
+            <div id="sentinel-home"></div> <!-- For infinite scroll on home -->
+        </section>
+
+        <!-- Works Section -->
+        <section id="works">
+            <div class="works-grid" id="works-grid">
+                <!-- Works will be loaded here -->
+            </div>
+            <div id="sentinel"></div> <!-- For infinite scroll -->
+        </section>
+
+        <!-- CV Section -->
+        <section id="cv">
+            <div class="cv-container" id="cv-content">
+                <!-- CV content will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-container">
+                <div class="artist-info" id="contact-artist-info">
+                    <h2 id="contact-name"></h2>
+                    <p id="contact-email"></p>
+                </div>
+                <div class="email-button-container">
+                    <a href="#" id="contact-email-btn" class="email-btn-large">Send Email</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Work Detail -->
+    <div id="work-modal" class="modal">
+        <div class="modal-content">
+            <div id="modal-images-container" class="modal-images-grid">
+                <!-- Images will be injected here -->
+            </div>
+            <div class="modal-info">
+                <h2 id="modal-title"></h2>
+                <p id="modal-detail"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="copyright">
+        © Han Jiyoo. All rights reserved.
+    </footer>
+
+    <!-- Data and Script -->
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
