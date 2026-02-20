@@ -42,31 +42,32 @@ Window	22.0x22.0cm*2	Acrylic on Canvas	2024	dusty_Window_1_3S.jpg / dusty_Window
 Home home	10.0x10.0cm*2	Acrylic on Canvas	2024	dusty_home home_1_1S.jpg / dusty_home home_2_1S.jpg
 Hideaway	91.0x116.8cm	Oil pastel on Canvas	2025	BODY_001_50F.JPG
 Hideaway	91.0x116.8cm	Oil pastel on Canvas	2025	BODY_002_50F.JPG
-Body drawing 1		Oil pastel on Paper	2025	Body_drawing_001.jpg
-Body drawing 2		Oil pastel on Paper	2025	Body_drawing_002.jpg
-Body drawing 3		Oil pastel on Paper	2025	Body_drawing_003.jpg
-Body drawing 4		Oil pastel on Paper	2025	Body_drawing_004.jpg
-Body drawing 5		Oil pastel on Paper	2025	Body_drawing_005.jpg
-Body drawing 6		Oil pastel on Paper	2025	Body_drawing_006.jpg
-Body drawing 7		Oil pastel on Paper	2025	Body_drawing_007.jpg
-Body drawing 8		Oil pastel on Paper	2025	Body_drawing_008.jpg
-Body drawing 9		Oil pastel on Paper	2025	Body_drawing_009.jpg
-Body drawing 10		Oil pastel on Paper	2025	Body_drawing_010.jpg
-Body drawing 11		Oil pastel on Paper	2025	Body_drawing_011.jpg
-Body drawing 12		Oil pastel on Paper	2025	Body_drawing_012.jpg
-Body drawing 13		Oil pastel on Paper	2025	Body_drawing_013.jpg
-Body drawing 14		Oil pastel on Paper	2025	Body_drawing_014.jpg
-Body drawing 15		Oil pastel on Paper	2025	Body_drawing_015.jpg
-Body drawing 16		Oil pastel on Paper	2025	Body_drawing_016.jpg
-Body drawing 17		Oil pastel on Paper	2025	Body_drawing_017.jpg
-Body drawing 18		Oil pastel on Paper	2025	Body_drawing_018.jpg
-Body drawing 19		Oil pastel on Paper	2025	Body_drawing_019.jpg
-Body drawing 20		Oil pastel on Paper	2025	Body_drawing_020.jpg
-Body drawing 21		Oil pastel on Paper	2025	Body_drawing_021.jpg
-Body drawing 22		Oil pastel on Paper	2025	Body_drawing_022.jpg
-Body drawing 23		Oil pastel on Paper	2025	Body_drawing_023.jpg
-Body drawing 24		Oil pastel on Paper	2025	Body_drawing_024.jpg
-Body drawing 25		Oil pastel on Paper	2025	Body_drawing_025.jpg
+Body drawing				Body_drawing_001.jpg
+Body drawing				Body_drawing_002.jpg
+Body drawing				Body_drawing_003.jpg
+Body drawing				Body_drawing_004.jpg
+Body drawing				Body_drawing_005.jpg
+Body drawing				Body_drawing_006.jpg
+Body drawing				Body_drawing_007.jpg
+Body drawing				Body_drawing_008.jpg
+Body drawing				Body_drawing_009.jpg
+Body drawing				Body_drawing_010.jpg
+Body drawing				Body_drawing_011.jpg
+Body drawing				Body_drawing_012.jpg
+Body drawing				Body_drawing_013.jpg
+Body drawing				Body_drawing_014.jpg
+Body drawing				Body_drawing_015.jpg
+Body drawing				Body_drawing_016.jpg
+Body drawing				Body_drawing_017.jpg
+Body drawing				Body_drawing_018.jpg
+Body drawing				Body_drawing_019.jpg
+Body drawing				Body_drawing_020.jpg
+Body drawing				Body_drawing_021.jpg
+Body drawing				Body_drawing_022.jpg
+Body drawing				Body_drawing_023.jpg
+Body drawing				Body_drawing_024.jpg
+Body drawing				Body_drawing_025.jpg
+
 `;
 
 /**
