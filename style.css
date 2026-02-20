@@ -264,7 +264,7 @@ section.active {
 }
 
 .modal-content {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -290,9 +290,11 @@ section.active {
 
 .modal-images-grid img {
     height: auto;
-    max-height: 80vh;
+    max-height: 92vh;
     object-fit: contain;
     cursor: pointer;
+    display: block;
+    margin: 0 auto;
 }
 
 .modal-images-grid:not(.multi) img {
@@ -300,20 +302,40 @@ section.active {
 }
 
 .modal-images-grid.multi img {
+    flex: 1 1 auto;
+    max-width: calc(50% - 10px);
+}
+
+/* 이미지 3개인 경우 3열 배치 강제 */
+.modal-images-grid.count-3 img {
     width: calc(33.333% - 14px);
-    /* 3컬럼 기준 (Gap 제외) */
+    max-width: none;
     flex: 0 0 auto;
 }
 
 /* Mobile: stack images vertically */
 @media (max-width: 768px) {
+    .modal {
+        padding: 40px 15px;
+        /* 모달 전체 좌우 여백 축소 */
+    }
+
     .modal-images-grid.multi {
         flex-direction: column;
         align-items: center;
+        gap: 15px;
+        /* 이미지 간 간격 축소 */
     }
 
-    .modal-images-grid.multi img {
+    .modal-images-grid.multi img,
+    .modal-images-grid.count-3 img {
         width: 100%;
+        max-width: none;
+    }
+
+    .modal-info {
+        margin-top: 20px;
+        /* 텍스트와의 여백 축소 */
     }
 }
 

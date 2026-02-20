@@ -91,7 +91,7 @@ let CV_AWARDS = [];
 function prepareData() {
     if (typeof WORKS_CSV !== 'undefined' && WORKS_CSV.trim()) {
         FINAL_WORKS = WORKS_CSV.trim().split('\n').filter(line => line.trim()).map((line, index) => {
-            const parts = line.split(/[,\t]/).map(p => p.trim());
+            const parts = line.split('\t').map(p => p.trim());
             const [title, size, material, year, imgPath, isHomeRaw] = parts;
 
             // 이미지 파일명이 여러 개인 경우 처리 ( / 로 구분)
@@ -268,12 +268,16 @@ function openModal(work) {
     // 기존 이미지 삭제
     container.innerHTML = '';
 
-    // 이미지들 추가
+    // 이미지들 추가 및 개수 클래스 부여
     if (work.images && work.images.length > 0) {
+        // 기존 개수 관련 클래스 제거
+        container.classList.remove('multi', 'count-1', 'count-2', 'count-3');
+
         if (work.images.length > 1) {
             container.classList.add('multi');
+            container.classList.add(`count-${work.images.length}`);
         } else {
-            container.classList.remove('multi');
+            container.classList.add('count-1');
         }
 
         work.images.forEach(imgSrc => {
@@ -286,7 +290,10 @@ function openModal(work) {
     }
 
     document.getElementById('modal-title').textContent = work.title;
-    document.getElementById('modal-detail').textContent = `${work.material}, ${work.size}, ${work.year}`;
+
+    // 비어있지 않은 정보만 필터링하여 콤마로 연결
+    const details = [work.material, work.size, work.year].filter(d => d && d.trim() !== '');
+    document.getElementById('modal-detail').textContent = details.join(', ');
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
 }
