@@ -34,8 +34,8 @@ Vans box	60.6x60.6cm	Acrylic on Canvas	2022	dusty_Vans box_20S.jpg
 Ta-da	53.0x65.1cm*3	Acrylic on Canvas	2022	dusty_Ta-da_1_15F.jpg / dusty_Ta-da_2_15F.jpg / dusty_Ta-da_3_15F.jpg
 Locker	65.1x53.0cm	Acrylic on Canvas	2021	dusty_Locker_15F.jpg
 Look at us!	31.8x31.8cm*2	Acrylic on Canvas	2022	dusty_Look at us_1_6S.jpg / dusty_Look at us_2_6S.jpg
-Welcome	31.8x31.8cm	Acrylic on Canvas	2024	dusty_Welcome_6S.jpg
-Peekaboo	31.8x31.8cm	Acrylic on Canvas	2026	dusty_Peekaboo_6S.jpg	Home
+Welcome	31.8x31.8cm	Acrylic on Canvas	2024	dusty_Welcome_6S.jpg	Home
+Peekaboo	31.8x31.8cm	Acrylic on Canvas	2026	dusty_Peekaboo_6S.jpg
 Come on in	24.4x24.4cm	Acrylic on Canvas	2024	dusty_Come on in_3S.jpg
 Under the chair	24.4x24.4cm	Acrylic on Canvas	2024	dusty_Under the Chair_4S.jpg
 Window	22.0x22.0cm*2	Acrylic on Canvas	2024	dusty_Window_1_3S.jpg / dusty_Window_2_3S.jpg
@@ -99,5 +99,6 @@ const CV_EXHIBITIONS_CSV = `
 const CV_AWARDS_CSV = `
 
 `;
+
 
 
