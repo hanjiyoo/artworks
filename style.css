@@ -21,6 +21,9 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    /* 폴백 */
+    min-height: 100dvh;
+    /* 현대적인 브라우저용 동적 뷰포트 높이 */
 }
 
 /* Header & Navigation */
