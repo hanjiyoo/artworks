@@ -18,6 +18,9 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Header & Navigation */
@@ -65,12 +68,17 @@ nav ul li a:hover {
     opacity: 0.5;
 }
 
-/* Main Content Area */
 main {
     margin-top: 80px;
-    /* Reduced from 120px */
-    min-height: calc(100vh - 80px);
-    padding: 0 var(--spacing) var(--spacing);
+    padding: 0 var(--spacing) 0;
+    flex: 1;
+    /* 남은 공간을 채워 푸터를 아래로 밈 */
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 0 20px 0;
+    }
 }
 
 section {
@@ -94,12 +102,12 @@ section.active {
 
 /* Home Section (Random Feed) */
 .home-feed-container {
-    max-width: 900px;
+    max-width: 1200px;
+    /* 창이 넓을 때 더 넓게 사용 */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 80px;
-    /* 이미지 간 넓은 여백 */
 }
 
 .home-feed-item {
@@ -440,9 +448,7 @@ header .hamburger {
 
     main {
         margin-top: 80px;
-        /* Reduced from 120px */
-        padding: 0 20px 100px;
-        /* 하단 여백 추가 확보 */
+        padding: 0 20px 0;
     }
 
     .works-grid {
@@ -451,28 +457,25 @@ header .hamburger {
     }
 }
 
-/* 저작권 표기 스타일 (더 견고하게 수정) */
+/* [저작권 표기 스타일] 
+   Flex 구조에 따라 콘텐츠가 적으면 화면 하단, 많으면 스크롤 끝에 위치함 */
 .copyright {
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
+    display: block;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    padding: 0 var(--spacing);
     font-size: 0.75rem;
     color: #999;
     letter-spacing: 0.02em;
-    z-index: 999;
-    /* 충분한 우선순위 */
-    pointer-events: none;
-    background: transparent;
     text-align: right;
-    width: auto;
-    left: auto;
+    width: 100%;
 }
 
-/* 모바일에서의 저작권 위치 조정 */
 @media (max-width: 768px) {
     .copyright {
-        bottom: 15px;
-        right: 20px;
+        margin-top: 40px;
+        padding: 0 20px;
+        margin-bottom: 20px;
         font-size: 0.65rem;
     }
 }

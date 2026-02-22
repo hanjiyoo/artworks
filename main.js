@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initWorks();
     initCV();
     initContact();
-    initModal();
 
     // 초기 라우팅 처리
     handleRouting();
@@ -82,7 +81,6 @@ function initNavigation() {
 
 // 전역 데이터 관리
 let FINAL_WORKS = [];
-let HOME_WORK = null; // 홈 화면에 표시할 대표 작품
 let CV_EDUCATION = [];
 let CV_EXHIBITIONS = [];
 let CV_AWARDS = [];
@@ -99,22 +97,13 @@ function prepareData() {
                 ? imgPath.split(' / ').map(img => img.trim().startsWith('http') ? img.trim() : `images/${img.trim()}`)
                 : [imgPath.startsWith('http') ? imgPath : `images/${imgPath}`];
 
-            const work = {
+            return {
                 id: `csv-${index}`,
                 title, size, material, year,
                 images: images,
-                image: images[0], // 첫 번째 이미지를 썸네일로 사용
-                isHome: isHomeRaw === 'Home' || isHomeRaw === '홈' || isHomeRaw === '대표'
+                image: images[0] // 첫 번째 이미지를 썸네일로 사용
             };
-
-            if (work.isHome) HOME_WORK = work;
-            return work;
         });
-
-        // 만약 대표 이미지로 설정된 게 없다면 첫 번째 작품을 사용
-        if (!HOME_WORK && FINAL_WORKS.length > 0) {
-            HOME_WORK = FINAL_WORKS[0];
-        }
     }
 
     const parseCSV = (csv) => csv?.trim() ? csv.trim().split('\n').map(l => l.trim()).filter(Boolean) : [];
@@ -146,19 +135,28 @@ function setupInfiniteScroll(containerId, sentinelId, data, batchSize, renderFn)
     }).observe(sentinel);
 }
 
-// Home: 대표 이미지 하나만 표시
+// Home: 랜덤 이미지 표시
 function initHomeFeed() {
     const container = document.getElementById('home-feed');
-    const sentinel = document.getElementById('sentinel-home');
 
-    // 무한 스크롤 무력화 (센티넬 제거)
-    if (sentinel) sentinel.parentNode.removeChild(sentinel);
+    if (FINAL_WORKS.length > 0) {
+        // 이미지가 1장인 작품들만 필터링
+        const singleImageWorks = FINAL_WORKS.filter(w => w.images.length === 1);
 
-    if (HOME_WORK) {
-        const div = document.createElement('div');
-        div.className = 'home-feed-item';
-        div.innerHTML = `<img src="${HOME_WORK.image}" alt="${HOME_WORK.title}">`;
-        container.appendChild(div);
+        if (singleImageWorks.length > 0) {
+            // 필터링된 작품 중 랜덤으로 하나 선택
+            const randomIndex = Math.floor(Math.random() * singleImageWorks.length);
+            const randomWork = singleImageWorks[randomIndex];
+
+            // 컨테이너 초기화 (이전 클래스 제거)
+            container.classList.remove('multi', 'count-2', 'count-3');
+
+            // 선택된 작품의 이미지 표시
+            const div = document.createElement('div');
+            div.className = 'home-feed-item';
+            div.innerHTML = `<img src="${randomWork.images[0]}" alt="${randomWork.title}">`;
+            container.appendChild(div);
+        }
     }
 }
 
@@ -261,9 +259,14 @@ function initContact() {
 }
 
 // Modal 로직
+let currentWorkIndex = -1;
+
 function openModal(work) {
     const modal = document.getElementById('work-modal');
     const container = document.getElementById('modal-images-container');
+
+    // 현재 인덱스 찾기
+    currentWorkIndex = FINAL_WORKS.findIndex(w => w.id === work.id);
 
     // 기존 이미지 삭제
     container.innerHTML = '';
@@ -284,7 +287,7 @@ function openModal(work) {
             const img = document.createElement('img');
             img.src = imgSrc;
             img.alt = work.title;
-            img.onclick = () => closeModal(); // 이미지 클릭 시 닫기
+            // img.onclick 처리 제거 (영역 터치에서 처리함)
             container.appendChild(img);
         });
     }
@@ -296,6 +299,66 @@ function openModal(work) {
     document.getElementById('modal-detail').textContent = details.join(', ');
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
+
+    // 팝업 내부 클릭 이벤트 설정 (영역별 터치)
+    setupModalEvents();
+}
+
+function setupModalEvents() {
+    const modal = document.getElementById('work-modal');
+    const modalContent = modal.querySelector('.modal-content');
+
+    // 기존 리스너 제거 (중복 방지)
+    modal.onclick = null;
+    modalContent.onclick = null;
+
+    // 터치/클릭 영역 처리
+    modal.onclick = (e) => {
+        const width = window.innerWidth;
+        const clickX = e.clientX;
+
+        if (clickX < width * 0.3) {
+            // 왼쪽 30%: 이전
+            navigateModal(-1);
+        } else if (clickX > width * 0.7) {
+            // 오른쪽 30%: 다음
+            navigateModal(1);
+        } else {
+            // 중앙 40% 또는 배경 클릭: 닫기
+            closeModal();
+        }
+    };
+
+    // 스와이프 처리
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    modal.ontouchstart = (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    };
+
+    modal.ontouchend = (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    };
+
+    function handleSwipe() {
+        const threshold = 50; // 스와이프 민감도
+        if (touchEndX < touchStartX - threshold) {
+            // 왼쪽으로 슬라이드: 다음 그림
+            navigateModal(1);
+        } else if (touchEndX > touchStartX + threshold) {
+            // 오른쪽으로 슬라이드: 이전 그림
+            navigateModal(-1);
+        }
+    }
+}
+
+function navigateModal(direction) {
+    const nextIndex = currentWorkIndex + direction;
+    if (nextIndex >= 0 && nextIndex < FINAL_WORKS.length) {
+        openModal(FINAL_WORKS[nextIndex]);
+    }
 }
 
 function closeModal() {
@@ -304,8 +367,5 @@ function closeModal() {
     document.body.style.overflow = 'auto';
 }
 
-function initModal() {
-    const modal = document.getElementById('work-modal');
-    window.onclick = (e) => { if (e.target === modal) closeModal(); };
-}
+// Modal 초기화는 setupModalEvents를 통해 개별적으로 이루어짐
 
