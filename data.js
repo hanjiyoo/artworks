@@ -19,6 +19,9 @@ const SITE_CONFIG = {
  * 엑셀 열 순서: 제목, 크기, 재료, 연도, 이미지파일명, Home 여부(선택)
  */
 const WORKS_CSV = `
+Around here	224.2x162.2cm	Acrylic on Canvas	2025	dusty_Around here_1_200P.jpg
+Alleyway	162.2x97cm	Acrylic on Canvas	2026	dusty_Alleyway_100M.jpg
+Happy Merry Christmas	130.0x162.2cm	Acrylic on Canvas	2023	dusty_Happy Merry Christmas_100F.jpg
 Home sweet home	116.8x91.0cm	Acrylic on Canvas	2022	dusty_Home sweet home_50F.jpg
 This movie like my LIFE	116.8x91.0cm	Acrylic on Canvas	2023	dusty_This movie like my LIFE_50F.jpg
 Simpson’s house	116.8x91.0cm	Acrylic on Canvas	2024	dusty_Simpson_s house_50F.jpg
@@ -34,40 +37,46 @@ Vans box	60.6x60.6cm	Acrylic on Canvas	2022	dusty_Vans box_20S.jpg
 Ta-da	53.0x65.1cm*3	Acrylic on Canvas	2022	dusty_Ta-da_1_15F.jpg / dusty_Ta-da_2_15F.jpg / dusty_Ta-da_3_15F.jpg
 Locker	65.1x53.0cm	Acrylic on Canvas	2021	dusty_Locker_15F.jpg
 Look at us!	31.8x31.8cm*2	Acrylic on Canvas	2022	dusty_Look at us_1_6S.jpg / dusty_Look at us_2_6S.jpg
-Welcome	31.8x31.8cm	Acrylic on Canvas	2024	dusty_Welcome_6S.jpg	Home
+Welcome	31.8x31.8cm	Acrylic on Canvas	2024	dusty_Welcome_6S.jpg
 Peekaboo	31.8x31.8cm	Acrylic on Canvas	2026	dusty_Peekaboo_6S.jpg
 Come on in	24.4x24.4cm	Acrylic on Canvas	2024	dusty_Come on in_3S.jpg
 Under the chair	24.4x24.4cm	Acrylic on Canvas	2024	dusty_Under the Chair_4S.jpg
 Window	22.0x22.0cm*2	Acrylic on Canvas	2024	dusty_Window_1_3S.jpg / dusty_Window_2_3S.jpg
 Home home	10.0x10.0cm*2	Acrylic on Canvas	2024	dusty_home home_1_1S.jpg / dusty_home home_2_1S.jpg
+Camp	27.3x22cm	Acrylic on Canvas	2026	dusty_Camp_3F.jpg
+Hideaway	130.3×162.2cm	Oil pastel on paper	2026	Hideaway_01_100F.jpg
 Hideaway	91.0x116.8cm	Oil pastel on Canvas	2025	BODY_001_50F.JPG
 Hideaway	91.0x116.8cm	Oil pastel on Canvas	2025	BODY_002_50F.JPG
-Body drawing				Body_drawing_001.jpg
-Body drawing				Body_drawing_002.jpg
-Body drawing				Body_drawing_003.jpg
-Body drawing				Body_drawing_004.jpg
-Body drawing				Body_drawing_005.jpg
-Body drawing				Body_drawing_006.jpg
-Body drawing				Body_drawing_007.jpg
-Body drawing				Body_drawing_008.jpg
-Body drawing				Body_drawing_009.jpg
-Body drawing				Body_drawing_010.jpg
-Body drawing				Body_drawing_011.jpg
-Body drawing				Body_drawing_012.jpg
-Body drawing				Body_drawing_013.jpg
-Body drawing				Body_drawing_014.jpg
-Body drawing				Body_drawing_015.jpg
-Body drawing				Body_drawing_016.jpg
-Body drawing				Body_drawing_017.jpg
-Body drawing				Body_drawing_018.jpg
-Body drawing				Body_drawing_019.jpg
-Body drawing				Body_drawing_020.jpg
-Body drawing				Body_drawing_021.jpg
-Body drawing				Body_drawing_022.jpg
-Body drawing				Body_drawing_023.jpg
-Body drawing				Body_drawing_024.jpg
-Body drawing				Body_drawing_025.jpg
-
+Hideaway	65.1x80.3cm	Oil pastel on Canvas	2026	Hideaway_04_25F.jpg
+Body drawing 1		Oil pastel on Paper	2025	Body_drawing_001.jpg
+Body drawing 2		Oil pastel on Paper	2025	Body_drawing_002.jpg
+Body drawing 3		Oil pastel on Paper	2025	Body_drawing_003.jpg
+Body drawing 4		Oil pastel on Paper	2025	Body_drawing_004.jpg
+Body drawing 5		Oil pastel on Paper	2025	Body_drawing_005.jpg
+Body drawing 6		Oil pastel on Paper	2025	Body_drawing_006.jpg
+Body drawing 7		Oil pastel on Paper	2025	Body_drawing_007.jpg
+Body drawing 8		Oil pastel on Paper	2025	Body_drawing_008.jpg
+Body drawing 9		Oil pastel on Paper	2025	Body_drawing_009.jpg
+Body drawing 10		Oil pastel on Paper	2025	Body_drawing_010.jpg
+Body drawing 11		Oil pastel on Paper	2025	Body_drawing_011.jpg
+Body drawing 12		Oil pastel on Paper	2025	Body_drawing_012.jpg
+Body drawing 13		Oil pastel on Paper	2025	Body_drawing_013.jpg
+Body drawing 14		Oil pastel on Paper	2025	Body_drawing_014.jpg
+Body drawing 15		Oil pastel on Paper	2025	Body_drawing_015.jpg
+Body drawing 16		Oil pastel on Paper	2025	Body_drawing_016.jpg
+Body drawing 17		Oil pastel on Paper	2025	Body_drawing_017.jpg
+Body drawing 18		Oil pastel on Paper	2025	Body_drawing_018.jpg
+Body drawing 19		Oil pastel on Paper	2025	Body_drawing_019.jpg
+Body drawing 20		Oil pastel on Paper	2025	Body_drawing_020.jpg
+Body drawing 21		Oil pastel on Paper	2025	Body_drawing_021.jpg
+Body drawing 22		Oil pastel on Paper	2025	Body_drawing_022.jpg
+Body drawing 23		Oil pastel on Paper	2025	Body_drawing_023.jpg
+Body drawing 24		Oil pastel on Paper	2025	Body_drawing_024.jpg
+Body drawing 25		Oil pastel on Paper	2025	Body_drawing_025.jpg
+Wetland_1		Oil on Canvas	2023	wetland_1_50S.jpg
+Wetland_2		Oil on Canvas	2023	Wetland_2_30F.jpg
+Glacial Striation_Crevasse_1		Mixed media on Panel	2025	Crevasse_1_25F.jpg
+Glacial Striation_Crevasse_2		Mixed media on Panel	2025	Crevasse_2_10F.jpg
 `;
 
 /**
