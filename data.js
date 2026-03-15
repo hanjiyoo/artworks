@@ -44,6 +44,9 @@ Under the chair	24.4x24.4cm	Acrylic on Canvas	2024	dusty_Under the Chair_4S.jpg
 Window	22.0x22.0cm*2	Acrylic on Canvas	2024	dusty_Window_1_3S.jpg / dusty_Window_2_3S.jpg
 Home home	10.0x10.0cm*2	Acrylic on Canvas	2024	dusty_home home_1_1S.jpg / dusty_home home_2_1S.jpg
 Camp	27.3x22cm	Acrylic on Canvas	2026	dusty_Camp_3F.jpg
+Merry-go-round	33.4x24.2cm	Acrylic on Canvas	2026	dusty_Merry-go-round.jpg
+Claw Machine	27.3x22cm	Acrylic on Canvas	2026	dusty_Claw Machine.jpg
+Book Store	60.6x60.6cm	Acrylic on Canvas	2026	dusty_Book Store.jpg
 Hideaway	130.3×162.2cm	Oil pastel on paper	2026	Hideaway_01_100F.jpg
 Hideaway	91.0x116.8cm	Oil pastel on Canvas	2025	BODY_001_50F.JPG
 Hideaway	91.0x116.8cm	Oil pastel on Canvas	2025	BODY_002_50F.JPG
