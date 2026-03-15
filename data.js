@@ -76,7 +76,6 @@ Wetland_1		Oil on Canvas	2023	wetland_1_50S.jpg
 Wetland_2		Oil on Canvas	2023	Wetland_2_30F.jpg
 Glacial Striation_Crevasse_1		Mixed media on Panel	2025	Crevasse_1_25F.jpg
 Glacial Striation_Crevasse_2		Mixed media on Panel	2025	Crevasse_2_10F.jpg
-test		test	5555	test.jpg
 `;
 
 /**
