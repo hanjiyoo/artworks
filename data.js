@@ -102,5 +102,5 @@ const CV_EXHIBITIONS_CSV = `
  * [4. CV - 수상 및 기타]
  */
 const CV_AWARDS_CSV = `
-
+susang
 `;
