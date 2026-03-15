@@ -96,7 +96,6 @@ const CV_EXHIBITIONS_CSV = `
 2022 개인전, <Dusty>, 갤러리 라메르, 서울
 2022 단체전, <Art Festival from Paraguay>, Museo Nacional de Bellas Artes de Asunción, Paraguay
 2021 단체전, <MOAF(Mullae One & Only Art Fair)>, 문래동 우체국, 서울
-2021 단체전, <MOAF(Mullae One & Only Art Fair)>, 문래동 우체국, 서울
 `;
 
 /**
