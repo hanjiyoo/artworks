@@ -1,22 +1,18 @@
 /**
  * 이 파일은 웹사이트의 모든 콘텐츠를 관리하는 데이터 파일입니다.
- * 엑셀(Excel)이나 테이블에서 데이터를 복사하여 아래의 각 항목 사이에 붙여넣으세요.
- * 
- * [수정 가이드]
- * 1. 엑셀에서 내용을 복사(Ctrl+C)한 뒤, 백틱(``) 기호 사이에 붙여넣기(Ctrl+V) 하세요.
- * 2. 이미지 파일은 images/ 폴더 안에 넣고 파일명을 확장자까지 적어주세요. (예: work1.jpg)
+ * admin 페이지에서 자동 생성됩니다.
  */
 
 const SITE_CONFIG = {
     title: "GU | Portfolio",
-    logoText: "GU", // 웹사이트 왼쪽 상단 로고 글자
-    artistName: "Han Jiyoo", // Contact 섹션 등에 표시될 작가 이름
-    email: "oz.hanny0828@gmail.com", // 메일 받을 주소
+    logoText: "GU",
+    artistName: "Han Jiyoo",
+    email: "oz.hanny0828@gmail.com",
 };
 
 /**
  * [1. Works - 작품 데이터]
- * 엑셀 열 순서: 제목, 크기, 재료, 연도, 이미지파일명, Home 여부(선택)
+ * 엑셀 열 순서: 제목, 크기, 재료, 연도, 이미지파일명
  */
 const WORKS_CSV = `
 Around here	224.2x162.2cm	Acrylic on Canvas	2025	dusty_Around here_1_200P.jpg
@@ -80,11 +76,11 @@ Wetland_1		Oil on Canvas	2023	wetland_1_50S.jpg
 Wetland_2		Oil on Canvas	2023	Wetland_2_30F.jpg
 Glacial Striation_Crevasse_1		Mixed media on Panel	2025	Crevasse_1_25F.jpg
 Glacial Striation_Crevasse_2		Mixed media on Panel	2025	Crevasse_2_10F.jpg
+test		test	5555	test.jpg
 `;
 
 /**
  * [2. CV - 학력]
- * 학력 사항을 한 줄에 하나씩 입력하세요.
  */
 const CV_EDUCATION_CSV = `
 2026 홍익대학교 미술대학원 회화전공 재학중
@@ -92,7 +88,6 @@ const CV_EDUCATION_CSV = `
 
 /**
  * [3. CV - 전시 경력]
- * 전시 경력을 한 줄에 하나씩 입력하세요.
  */
 const CV_EXHIBITIONS_CSV = `
 2025 단체전, <Frech Born>, 성남아트센터 갤러리 808, 경기도
@@ -106,11 +101,7 @@ const CV_EXHIBITIONS_CSV = `
 
 /**
  * [4. CV - 수상 및 기타]
- * 수상 경력 등을 한 줄에 하나씩 입력하세요.
  */
 const CV_AWARDS_CSV = `
 
 `;
-
-
-
