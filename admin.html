@@ -626,6 +626,63 @@
             font-size: 0.95rem;
             color: var(--text2);
         }
+
+        /* ── 붙여넣기 모달 ── */
+        .paste-modal-backdrop {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 8000;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+        }
+        .paste-modal-backdrop.show { display: flex; }
+        .paste-modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px;
+            width: 100%;
+            max-width: 560px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .paste-modal h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .paste-modal p {
+            font-size: 0.82rem;
+            color: var(--text2);
+            margin-bottom: 14px;
+            line-height: 1.6;
+        }
+        .paste-modal textarea {
+            width: 100%;
+            height: 180px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-size: 0.85rem;
+            font-family: 'Inter', monospace;
+            padding: 10px 12px;
+            outline: none;
+            resize: vertical;
+            margin-bottom: 14px;
+        }
+        .paste-modal textarea:focus { border-color: var(--accent); }
+        .paste-modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+        /* ── 작품 목록 툴바 ── */
+        .works-toolbar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 
@@ -655,17 +712,17 @@
 
         <div class="admin-body">
             <nav class="admin-sidebar">
-                <button class="tab-btn active" onclick="showPanel('images', this)">🖼 이미지 관리</button>
+                <button class="tab-btn active" onclick="showPanel('token', this)">🔑 GitHub 토큰</button>
+                <button class="tab-btn" onclick="showPanel('images', this)">🖼 이미지 관리</button>
                 <button class="tab-btn" onclick="showPanel('works', this)">🎨 작품 목록</button>
                 <button class="tab-btn" onclick="showPanel('cv', this)">📄 CV</button>
                 <button class="tab-btn" onclick="showPanel('settings', this)">⚙️ 사이트 설정</button>
-                <button class="tab-btn" onclick="showPanel('token', this)">🔑 GitHub 토큰</button>
             </nav>
 
             <div class="admin-main">
 
                 <!-- ── 이미지 관리 패널 ── -->
-                <div class="panel active" id="panel-images">
+                <div class="panel" id="panel-images">
                     <div class="panel-title">🖼 이미지 관리</div>
 
                     <div class="card">
@@ -697,9 +754,14 @@
                 <div class="panel" id="panel-works">
                     <div class="panel-title">🎨 작품 목록 편집</div>
                     <div class="card">
-                        <div style="font-size:0.85rem;color:var(--text2);margin-bottom:16px;">
+                        <div style="font-size:0.85rem;color:var(--text2);margin-bottom:14px;">
                             행을 드래그하여 순서를 변경하거나, ▲▼ 버튼을 사용하세요. 이미지파일명은 <code style="color:var(--accent2);">images/</code>
                             폴더의 파일명을 입력하세요.
+                        </div>
+                        <!-- 툴바 -->
+                        <div class="works-toolbar">
+                            <button class="btn-sm btn-save" onclick="pasteFromExcel()" title="엑셀에서 복사한 데이터를 붙여넣습니다">📋 엑셀에서 붙여넣기</button>
+                            <button class="btn-sm btn-ghost" onclick="downloadAsExcel()" title="현재 작품 목록을 CSV 파일로 다운로드합니다">📥 엑셀로 다운로드</button>
                         </div>
                         <div class="works-table-wrap">
                             <table id="works-table">
@@ -718,6 +780,22 @@
                             </table>
                         </div>
                         <button class="add-row-btn" onclick="addWorkRow()">+ 새 작품 추가</button>
+                    </div>
+                </div>
+
+                <!-- 붙여넣기 수동 모달 (클립보드 API 불가 시 폴백) -->
+                <div class="paste-modal-backdrop" id="paste-modal-backdrop">
+                    <div class="paste-modal">
+                        <h3>📋 엑셀 데이터 붙여넣기</h3>
+                        <p>
+                            엑셀에서 복사한 셀을 아래 칸에 붙여넣기(Ctrl+V) 하세요.<br>
+                            열 순서: <strong>제목 → 크기 → 재료 → 연도 → 이미지파일명</strong>
+                        </p>
+                        <textarea id="paste-textarea" placeholder="여기에 엑셀 데이터를 붙여넣으세요..."></textarea>
+                        <div class="paste-modal-actions">
+                            <button class="btn-sm btn-ghost" onclick="closePasteModal()">취소</button>
+                            <button class="btn-sm btn-save" onclick="confirmPasteModal()">✅ 적용</button>
+                        </div>
                     </div>
                 </div>
 
@@ -773,7 +851,7 @@
                 </div>
 
                 <!-- ── GitHub 토큰 패널 ── -->
-                <div class="panel" id="panel-token">
+                <div class="panel active" id="panel-token">
                     <div class="panel-title">🔑 GitHub 토큰 설정</div>
                     <div class="card">
                         <div class="card-title">Personal Access Token (PAT)</div>
@@ -1184,13 +1262,107 @@ ${awd}
         }
 
         // ────────────────────────────────
+        // 엑셀 붙여넣기
+        // ────────────────────────────────
+        async function pasteFromExcel() {
+            // 클립보드 API 시도
+            if (navigator.clipboard && navigator.clipboard.readText) {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    if (text.trim()) { processExcelPaste(text); return; }
+                } catch (e) {
+                    // 권한 거부 등 → 폴백 모달
+                }
+            }
+            // 폴백: 수동 입력 모달
+            openPasteModal();
+        }
+
+        function processExcelPaste(text) {
+            // 줄 파싱 (\r\n / \n 모두 처리)
+            const lines = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+                              .trim().split('\n').filter(l => l.trim());
+            if (!lines.length) { showToast('붙여넣을 데이터가 없습니다.', 'error'); return; }
+
+            const currentRows = document.querySelectorAll('#works-tbody tr').length;
+            let replace = false;
+            if (currentRows > 0) {
+                replace = confirm(`현재 ${currentRows}개의 작품이 있습니다.\n\n[확인] 기존 데이터를 지우고 붙여넣기\n[취소] 기존 데이터 아래에 추가`);
+            }
+            if (replace) document.getElementById('works-tbody').innerHTML = '';
+
+            let added = 0;
+            lines.forEach(line => {
+                const parts = line.split('\t').map(p => p.trim());
+                addWorkRow(
+                    parts[0] || '', parts[1] || '',
+                    parts[2] || '', parts[3] || '', parts[4] || ''
+                );
+                added++;
+            });
+            showToast(`✅ ${added}개 행이 ${replace ? '교체' : '추가'}되었습니다.`, 'success');
+        }
+
+        function openPasteModal() {
+            document.getElementById('paste-textarea').value = '';
+            document.getElementById('paste-modal-backdrop').classList.add('show');
+            setTimeout(() => document.getElementById('paste-textarea').focus(), 100);
+        }
+
+        function closePasteModal() {
+            document.getElementById('paste-modal-backdrop').classList.remove('show');
+        }
+
+        function confirmPasteModal() {
+            const text = document.getElementById('paste-textarea').value;
+            closePasteModal();
+            if (!text.trim()) { showToast('데이터가 없습니다.', 'error'); return; }
+            processExcelPaste(text);
+        }
+
+        // ────────────────────────────────
+        // 엑셀(CSV) 다운로드
+        // ────────────────────────────────
+        function downloadAsExcel() {
+            const rows = document.querySelectorAll('#works-tbody tr');
+            if (!rows.length) { showToast('다운로드할 작품 데이터가 없습니다.', 'error'); return; }
+
+            const headers = ['제목', '크기', '재료', '연도', '이미지파일명'];
+            const csvRows = [headers.join(',')];
+
+            rows.forEach(tr => {
+                const inputs = tr.querySelectorAll('input');
+                const values = Array.from(inputs).map(inp => {
+                    // 쉼표·따옴표 포함 값은 큰따옴표로 감쌈
+                    const v = inp.value.replace(/"/g, '""');
+                    return `"${v}"`;
+                });
+                csvRows.push(values.join(','));
+            });
+
+            // UTF-8 BOM 추가 (한글 엑셀 호환)
+            const BOM = '\uFEFF';
+            const blob = new Blob([BOM + csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const now = new Date();
+            const dateStr = `${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}`;
+            a.download = `works_list_${dateStr}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('📥 CSV 파일 다운로드 완료!', 'success');
+        }
+
+        // ────────────────────────────────
         // 유틸
         // ────────────────────────────────
         function showPanel_byName(name) {
             document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('panel-' + name).classList.add('active');
-            document.querySelectorAll('.tab-btn')[['images', 'works', 'cv', 'settings', 'token'].indexOf(name)].classList.add('active');
+            // 사이드바 순서: token, images, works, cv, settings
+            document.querySelectorAll('.tab-btn')[['token', 'images', 'works', 'cv', 'settings'].indexOf(name)].classList.add('active');
         }
 
         function showOverlay(msg) {
